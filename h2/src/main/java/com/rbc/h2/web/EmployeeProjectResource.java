@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @Api(tags = "{EmployeeProject}")
-@RequestMapping("employeeProject")
+@RequestMapping("employee-project")
 public class EmployeeProjectResource {
 
     @Autowired

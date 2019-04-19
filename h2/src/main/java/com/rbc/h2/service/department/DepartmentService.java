@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class DepartmentService {
+public class  DepartmentService {
 
     @Autowired
     DepartmentRepository departmentRepository;
