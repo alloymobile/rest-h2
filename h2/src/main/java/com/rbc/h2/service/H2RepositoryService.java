@@ -62,7 +62,7 @@ public abstract class H2RepositoryService<DBO_TYPE extends IH2DBO> {
         if (dbo_type == null) {
             return Optional.empty();
         }
-        return Optional.of(this.repository.save(dbo_type));
+        return Optional.of(this.repository.saveAndFlush(dbo_type));
     }
 
     //delete an object by ID

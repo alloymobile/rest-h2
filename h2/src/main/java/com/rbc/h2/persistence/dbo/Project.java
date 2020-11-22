@@ -17,6 +17,6 @@ public class Project  implements IH2DBO {
 
     private String name;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<EmployeeProject> projectEmployeeList;
 }
