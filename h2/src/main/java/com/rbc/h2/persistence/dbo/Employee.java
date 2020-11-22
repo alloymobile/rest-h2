@@ -1,5 +1,6 @@
 package com.rbc.h2.persistence.dbo;
 
+import com.rbc.h2.persistence.IH2DBO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -11,11 +12,11 @@ import java.util.List;
 @Data
 @ToString(exclude = {"department","employeeProjectList"})
 @EqualsAndHashCode(exclude = {"department","employeeProjectList"})
-public class Employee {
+public class Employee  implements IH2DBO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
 

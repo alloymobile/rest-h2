@@ -1,5 +1,6 @@
 package com.rbc.h2.persistence.dbo;
 
+import com.rbc.h2.persistence.IH2DBO;
 import lombok.Data;
 import lombok.ToString;
 
@@ -9,13 +10,13 @@ import java.util.List;
 @Entity
 @Data
 @ToString(exclude = {"projectEmployeeList"})
-public class Project {
+public class Project  implements IH2DBO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<EmployeeProject> projectEmployeeList;
 }
