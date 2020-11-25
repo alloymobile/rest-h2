@@ -38,11 +38,14 @@ public class ProjectMapper extends H2Mapper<Project, ProjectDTO> {
         dbo.setName(dto.getName());
         //Only used in case of update
         if(dbo.getId() != null){
+            List<EmployeeProject> employeeProjectList = new ArrayList<>();
             for(EmployeeProject employeeProject: dbo.getProjectEmployeeList()){
                 Optional<EmployeeDTO> emp = dto.getEmployees().stream().filter(e->e.getId().equals(employeeProject.getEmployee().getId())).findFirst();
                 if(!emp.isPresent()){
                     employeeProject.setProject(null);
                     this.employeeProjectService.delete(employeeProject);
+                }else{
+                    employeeProjectList.add(employeeProject);
                 }
             }
             for(EmployeeDTO e: dto.getEmployees()){
@@ -51,10 +54,10 @@ public class ProjectMapper extends H2Mapper<Project, ProjectDTO> {
                     EmployeeProject empProject = new EmployeeProject();
                     empProject.setProject(dbo);
                     this.employeeService.findById(e.getId()).ifPresent(employee -> empProject.setEmployee(employee));
-                    this.employeeProjectService.create(empProject);
+                    this.employeeProjectService.create(empProject).ifPresent(employeeProject1 -> employeeProjectList.add(employeeProject1));
                 }
             }
-
+            dbo.setProjectEmployeeList(employeeProjectList);
         }
     }
 
