@@ -7,7 +7,6 @@ import lombok.Getter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,39 +42,38 @@ public abstract class H2RepositoryService<DBO_TYPE extends IH2DBO> {
     }
 
     //add one object and return dbo object
-    protected Optional<DBO_TYPE> create(DBO_TYPE dbo_type){
+    public Optional<DBO_TYPE> create(DBO_TYPE dbo_type){
         if(dbo_type == null){
             return Optional.empty();
         }
         return Optional.of(this.repository.save(dbo_type));
     }
 
-
-    protected Optional<List<DBO_TYPE>> save(Iterable<DBO_TYPE> iterable) {
-        if (iterable == null || !iterable.iterator().hasNext()) {
-            return Optional.empty();
-        }
-        return Optional.of(this.repository.saveAll(iterable));
-    }
-
-    protected Optional<DBO_TYPE> save(DBO_TYPE dbo_type) {
-        if (dbo_type == null) {
-            return Optional.empty();
-        }
-        return Optional.of(this.repository.saveAndFlush(dbo_type));
-    }
-
     //delete an object by ID
-    protected void deleteById(Long id) {
+    public void deleteById(Long id) {
         if (id != null) {
             this.repository.findById(id).ifPresent(this::delete);
         }
     }
 
     //Method only used in this class
-    private void delete(DBO_TYPE dbo_type) {
+    public void delete(DBO_TYPE dbo_type) {
         if (dbo_type != null) {
             this.repository.delete(dbo_type);
         }
+    }
+
+    //Method only used in this class
+    public void deleteAll(Iterable<DBO_TYPE>  iterable) {
+        if (iterable != null) {
+            this.repository.deleteAll(iterable);
+        }
+    }
+
+    public Optional<List<DBO_TYPE>> createAll(Iterable<DBO_TYPE> iterable) {
+        if (iterable == null || !iterable.iterator().hasNext()) {
+            return Optional.empty();
+        }
+        return Optional.of(this.repository.saveAll(iterable));
     }
 }

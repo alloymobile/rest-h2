@@ -43,7 +43,6 @@ public abstract class H2Service<DBO_TYPE extends IH2DBO, DTO_TYPE extends IH2DTO
             return Optional.empty();
         }
         this.h2Mapper.extendForUpdate(Collections.singletonList(new H2MapperPair<>(dboToUpdate, updatedObject)));
-        return this.save(dboToUpdate).map(this.h2Mapper::toDTO);
+        return this.create(dboToUpdate).map(this.h2Mapper::toDTO);
     }
-
 }
