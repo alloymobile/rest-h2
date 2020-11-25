@@ -35,6 +35,7 @@ public class DepartmentResource {
     }
 
     @GetMapping(value = "", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Page<DepartmentDTO>> getAllDepartments(
             @QuerydslPredicate(root = Department.class,bindings = DepartmentRepository.class) Predicate predicate, Pageable pageable)
     {
