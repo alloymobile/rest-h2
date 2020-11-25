@@ -32,4 +32,65 @@ public class H2ApplicationTests {
         Assert.assertEquals(true, result.getBody().contains("name"));
     }
 
+    @Test
+    public void testGetDepartmentList() throws URISyntaxException {
+        RestTemplate restTemplate = new RestTemplate();
+
+        final String baseUrl = "http://localhost:" + randomServerPort + "/department";
+        URI uri = new URI(baseUrl);
+
+        ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
+
+        Assert.assertEquals(200, result.getStatusCodeValue());
+    }
+
+    @Test
+    public void testAddDepartment() throws URISyntaxException {
+        RestTemplate restTemplate = new RestTemplate();
+
+        final String baseUrl = "http://localhost:" + randomServerPort + "/department";
+        URI uri = new URI(baseUrl);
+
+        ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
+
+        Assert.assertEquals(200, result.getStatusCodeValue());
+
+    }
+
+    @Test
+    public void testGetDepartmentById() throws URISyntaxException {
+        RestTemplate restTemplate = new RestTemplate();
+
+        final String baseUrl = "http://localhost:" + randomServerPort + "/department";
+        URI uri = new URI(baseUrl);
+
+        ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
+
+        Assert.assertEquals(200, result.getStatusCodeValue());
+    }
+
+    @Test
+    public void testUpdateDepartmentById() throws URISyntaxException {
+        RestTemplate restTemplate = new RestTemplate();
+
+        final String baseUrl = "http://localhost:" + randomServerPort + "/department";
+        URI uri = new URI(baseUrl);
+
+        ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
+
+        Assert.assertEquals(200, result.getStatusCodeValue());
+    }
+
+    @Test
+    public void testDeleteDepartmentById() throws URISyntaxException {
+        RestTemplate restTemplate = new RestTemplate();
+
+        final String baseUrl = "http://localhost:" + randomServerPort + "/department";
+        URI uri = new URI(baseUrl);
+
+        ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
+
+        Assert.assertEquals(200, result.getStatusCodeValue());
+    }
+
 }

@@ -18,7 +18,7 @@ public class Department implements IH2DBO {
 
     private String name;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties({ "department" })
-    private List<Employee> employeeList;
+//    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+//    @JsonIgnoreProperties({ "department" })
+//    private List<Employee> employeeList;
 }
