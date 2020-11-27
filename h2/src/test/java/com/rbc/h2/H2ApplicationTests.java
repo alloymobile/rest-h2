@@ -108,7 +108,7 @@ public class H2ApplicationTests {
         Map<String, String> params = new HashMap<String, String>();
         params.put("id", "3");
 
-        restTemplate.put(baseUrl,params);
+        restTemplate.delete(baseUrl,params);
     }
 
 }
